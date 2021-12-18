@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    >
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp"
+        >
+
+
+        <TextView
+            android:id="@+id/noticeKinds"
+            android:layout_width="100dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center"
+
+            android:padding="6dp"
+            android:text="[공지사항]"
+            android:textAlignment="center"
+            android:textColor="#546E7A"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/noticeTitle"
+            android:layout_width="320dp"
+            android:layout_height="35dp"
+            android:padding="6dp"
+            android:text="신메뉴 출시"
+            android:textColor="#000000"
+            android:textStyle="bold" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        >
+
+        <TextView
+            android:id="@+id/idx"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="15dp"
+            android:padding="3dp"
+            android:text="55"
+            android:textColor="#546E7A"
+            android:textColorHint="#ffffff" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="2021-01-15"
+            android:layout_gravity="center"
+            android:layout_marginLeft="8dp"
+
+            android:textColor="#546E7A"
+            android:textColorHint="#ffffff"
+            android:id="@+id/writeDate"/>
+    </LinearLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/noticeImg">
+    </ImageView>
+
+
+
+</LinearLayout>

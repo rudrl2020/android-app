@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="173dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="70dp"
+            android:text="O'fete"
+            android:textSize="60dp"
+            android:textStyle="bold" />
+
+
+        <Button
+            android:id="@+id/logbtn"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="60dp"
+            android:background="@drawable/circle"
+            android:padding="3dp"
+            android:text="login"
+            android:textSize="15dp" />
+
+        <Button
+            android:id="@+id/btn_cart"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="60dp"
+            android:background="@drawable/circle"
+            android:text="cart"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="171dp"
+        android:orientation="horizontal">
+
+
+        <Button
+            android:id="@+id/noticebtn"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_below="@+id/text2"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="49dp"
+            android:background="@drawable/circle"
+            android:drawableTop="@drawable/notice"
+            android:padding="5dp"
+            android:text="공지사항"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/menubtn"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_below="@+id/text2"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="49dp"
+            android:background="@drawable/circle"
+            android:drawableTop="@drawable/menu"
+            android:padding="5dp"
+            android:text="메뉴판"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/introbtn"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_below="@+id/text2"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="49dp"
+            android:background="@drawable/circle"
+            android:drawableTop="@drawable/intro"
+            android:padding="5dp"
+            android:text="카페소개"
+            android:textSize="20dp" />
+    </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="최근공지사항"
+            android:textSize="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="30dp"
+            />
+
+    <ImageView
+        android:id="@+id/homenoticeimg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp" />
+
+
+
+
+
+
+
+
+</LinearLayout>

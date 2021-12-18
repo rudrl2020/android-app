@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="70dp">
+
+    <TextView
+        android:id="@+id/cart_tv_menuName"
+        android:layout_width="160dp"
+        android:layout_height="70dp"
+        android:textAlignment="center"
+
+        android:text="레몬크림치즈타르트홀판" />
+
+    <TextView
+        android:id="@+id/cart_tv_price"
+        android:layout_width="100dp"
+        android:layout_height="70dp"
+
+        android:text="60000"
+        android:textAlignment="center" />
+
+    <TextView
+        android:id="@+id/cart_tv_num"
+        android:layout_width="40dp"
+        android:layout_height="70dp"
+        android:text="10"
+        android:textAlignment="center" />
+
+
+        <Button
+            android:id="@+id/btn_plus"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@drawable/nemo"
+            android:text="+" />
+
+        <Button
+            android:id="@+id/btn_minus"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@drawable/nemo"
+            android:text="-"
+            />
+
+</LinearLayout>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CouponsFragment">
+
+    <LinearLayout
+        android:layout_width="420dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="60dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="OPETE  "
+                android:textAlignment="center"
+                android:textSize="35dp"
+                android:textStyle="bold"
+                android:textColor="#5D4037"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Stamp"
+                android:textAlignment="center"
+                android:textSize="30dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="50dp"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/memberName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_gravity="center"
+                android:text="가나다 님  "
+                android:textSize="40dp" />
+
+            <TextView
+                android:id="@+id/memberStamps"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="5 개"
+                android:textSize="40dp" />
+
+        </LinearLayout>
+
+
+
+        <Button
+            android:id="@+id/btnCoupons"
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="쿠폰받기"
+            android:textSize="30dp"
+            android:background="#BCAAA4"
+            android:textColor="#ffffff"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="OPETE  "
+                android:textSize="25dp"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="쿠폰발급 안내"
+                android:textSize="23dp"
+                />
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:text="- 1잔 구매시 1개의 스템프가 적립됩니다."
+            android:textSize="15dp"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="- 스템프 8개를 모으면 스템프쿠폰이 발급됩니다."
+            android:textSize="15dp"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="- 스템프를 모으는 재미와 오페뜨에 맛있는 커피를 같이 즐겨보세요!"
+            android:textSize="15dp"
+            />
+    </LinearLayout>
+
+
+
+</FrameLayout>

@@ -1,0 +1,150 @@
+package com.example.project1;
+
+
+import android.content.Intent;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+
+public class NoticeList extends AppCompatActivity {
+
+    //private로 해당 클래스에 멤버 변수
+    private ListView noticeListView;
+    private NoticeListAdapter adapter;
+    private List<Notice> noticeList;
+
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.notice);
+
+
+        noticeListView = (ListView) findViewById(R.id.noticeListView);
+        noticeList = new ArrayList<Notice>(); //new ArrayList로 초기화
+
+
+        adapter = new NoticeListAdapter(getApplicationContext(), noticeList);
+        //adapter에  noticeList 내역들이 차례대로 들어감
+        noticeListView.setAdapter(adapter);
+        //리스트뷰에 해당 adapter이 매칭이 됨으로써
+        // adapter에 들어가있는 모든 내용이 뷰 형태로 리스트뷰에 들어가서 보여짐
+        new BackgroundTask().execute();
+
+
+        noticeListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //제부공지사항 화면으로 이동하기(인텐트날리기)
+                Intent intent = new Intent(
+                        getApplicationContext(), //현재화면의 제어권자
+                        NoticeDetailActivity.class); //다음 널어갈 화면
+
+                //intent 객체에 데이터를 실어서 보내기
+                //리스트뷰 클릭시 인텐트 생성하고 position 값을 이요하여 인텐트로 넘길값
+
+                intent.putExtra("idx", noticeList.get(position).index);
+                intent.putExtra("noticeTitle", noticeList.get(position).title);
+                intent.putExtra("noticeKinds", noticeList.get(position).kinds);
+                intent.putExtra("writeDate", noticeList.get(position).date);
+                startActivity(intent);
+
+            }
+        });
+    }
+
+    class BackgroundTask extends AsyncTask<Void, Void, String> {
+        //<doInBackground의 매개변수자료형, onProgressUpdate 매개변수자료형, onPostExecute의 매개변수 자료형>
+
+        String target; // 우리가 접속할 홈페이지 주소
+
+        @Override
+        protected void onPreExecute() { //작업이 실행되기 전에 UI스레드에서 호출된다. 사용자 인터페이스에 징행률표시줄을 표시하여 작업을 설정
+            target = "http://175.121.166.150:8000/capston/application/Noticelist.php"; //해당 웹서버에 접속할 수 있게
+        }
+        //실질적 데이터를 얻어 올 수 있는 코드
+        @Override
+        protected String doInBackground(Void... voids) { //백그라운드 스레드에서 호출된다. 핵심적인작업
+            try {
+                URL url = new URL(target); //해당 서버에 접속 할 수 있도록 커넥팅
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                InputStream inputStream = httpURLConnection.getInputStream();
+                //해당 InPutStream에 있는 내용들을 버퍼에 담아서 읽을 수 있도록 하기
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+                String temp;
+                //이 템프에 하나씩 읽어와서 문자열 형태로 저장할 수 있게
+                StringBuilder stringBuilder = new StringBuilder();
+                //템프에다가 하나씩 넣는다. 버퍼에서 가져온 값을 한 줄씩 읽으면서 템프에다가 하나씩 넣는다.
+                while ((temp = bufferedReader.readLine()) != null)
+                {
+                    //stringBuilder에 템프에 한줄씩 추가하면서 넣기
+                    stringBuilder.append(temp + "\n");
+                }
+                bufferedReader.close();
+                inputStream.close();
+                httpURLConnection.disconnect();
+                return stringBuilder.toString().trim();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+        //해당 결과를 처리할 수 있음
+        @Override
+        public void onProgressUpdate(Void... values) {
+            super.onProgressUpdate();
+        }
+        //해당결과를 처리할 수 있음
+        @Override
+        public void onPostExecute(String result) {//결과값 result로 받아오기
+            try {
+                JSONObject jsonObject = new JSONObject(result);
+                //응답부분처리하기
+                //result를 인자로 넣어 jsonObject를 생성
+                //response에 각각의 공지사항 리스트가 담김
+
+                JSONArray jsonArray = jsonObject.getJSONArray("response"); //response의 jsonObject들을 배열로 저장
+                int count = 0;
+                String idx,noticeTitle,noticeKinds, writeDate ;
+                while (count < jsonArray.length())//전체 크기보다 작을 때 까지 jsonObject에 담긴 두개의 jsonObject를 jsonArray를 통해 하나씩 호출
+                {
+                    JSONObject object = jsonArray.getJSONObject(count);
+                    idx = object.getString("idx");
+                    noticeTitle = object.getString("noticeTitle");
+                    noticeKinds = object.getString("noticeKinds");
+                    writeDate = object.getString("writeDate");
+                    //하나의 객체 만들어주기, 하나의 공지사항에 대한 객체 생성
+                    //하나의 생성자를 이용해서 객체 할당
+                    Notice notice = new Notice(idx, noticeTitle, noticeKinds, writeDate);//객체생성
+                    noticeList.add(notice);
+                    adapter.notifyDataSetChanged();
+                    count++;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+
+
+
+
+
+
